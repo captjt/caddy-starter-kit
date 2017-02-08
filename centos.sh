@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-#           Caddy Starter Script (Centos)
+#           Caddy Starter Kit(Centos)
 #
 # Once the script finishes you can do typical systemctl calls on caddy.service
 #   sudo systemctl enable caddy.service
@@ -10,15 +10,13 @@
 #   etc.
 
 # This script will download and install the caddy binary and put it in your PATH
-wget -qO- https://getcaddy.com | bash
+wget -O- https://raw.githubusercontent.com/jtaylor32/getcaddy.com/master/getcaddy.sh | bash
 
 # this will download the caddy.service file I am hosting in github and put it in your $HOME dir
 wget https://raw.githubusercontent.com/jtaylor32/caddy-starter-kit/master/caddy.service
 
-sudo chown root:root /usr/local/bin/caddy_0.9.5
-sudo chmod 755 /usr/local/bin/caddy_0.9.5
-
-sudo setcap 'cap_net_bind_service=+ep' /usr/local/bin/caddy
+sudo chown root:root /usr/local/bin/caddy
+sudo chmod 755 /usr/local/bin/caddy
 
 # create a www-data user for caddy to serve static files later on
 sudo groupadd -g 33 www-data
