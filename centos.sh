@@ -13,7 +13,7 @@
 wget -qO- https://getcaddy.com | bash
 
 # this will download the caddy.service file I am hosting in github and put it in your $HOME dir
-wget https://raw.githubusercontent.com/jtaylor32/caddy-start-kit/master/caddy.service
+wget -O- https://raw.githubusercontent.com/jtaylor32/caddy-starter-kit/master/caddy.service
 
 sudo chown root:root /usr/local/bin/caddy_0.9.5
 sudo chmod 755 /usr/local/bin/caddy_0.9.5
