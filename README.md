@@ -1,7 +1,7 @@
 Caddy Starter Kit
 =====================
 
-This is a POC to get a full install -> setup -> start of Caddy on a Centos Machince
+This is a POC to get a full install -> setup -> start of Caddy on a Centos Machine
 
 To install and run script ...
 
