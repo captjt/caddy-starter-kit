@@ -11,9 +11,6 @@
 
 sudo yum install wget --assumeyes
 
-mkdir caddy_files
-cd caddy_files
-
 # This script will download and install the caddy binary and put it in your PATH
 wget -qO- https://getcaddy.com | bash
 
