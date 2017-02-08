@@ -9,13 +9,11 @@
 #   sudo systemctl status caddy.service
 #   etc.
 
-sudo yum install wget --assumeyes
-
 # This script will download and install the caddy binary and put it in your PATH
 wget -qO- https://getcaddy.com | bash
 
 # this will download the caddy.service file I am hosting in github and put it in your $HOME dir
-wget -O- https://raw.githubusercontent.com/jtaylor32/caddy-start-kit/master/caddy.service
+wget https://raw.githubusercontent.com/jtaylor32/caddy-start-kit/master/caddy.service
 
 sudo chown root:root /usr/local/bin/caddy
 sudo chmod 755 /usr/local/bin/caddy
