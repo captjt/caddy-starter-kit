@@ -15,8 +15,8 @@ wget -qO- https://getcaddy.com | bash
 # this will download the caddy.service file I am hosting in github and put it in your $HOME dir
 wget https://raw.githubusercontent.com/jtaylor32/caddy-start-kit/master/caddy.service
 
-sudo chown root:root /usr/local/bin/caddy
-sudo chmod 755 /usr/local/bin/caddy
+sudo chown root:root /usr/local/bin/caddy_0.9.5
+sudo chmod 755 /usr/local/bin/caddy_0.9.5
 
 sudo setcap 'cap_net_bind_service=+ep' /usr/local/bin/caddy
 
@@ -45,7 +45,7 @@ sudo chown www-data:www-data /etc/caddy/Caddyfile
 sudo chmod 444 /etc/caddy/Caddyfile
 
 # make sure the caddy.service file is located in the same directory as this file
-sudo cp ./caddy.service /etc/systemd/system/
+sudo cp $HOME/caddy.service /etc/systemd/system/
 sudo chown root:root /etc/systemd/system/caddy.service
 sudo chmod 744 /etc/systemd/system/caddy.service
 sudo systemctl daemon-reload
