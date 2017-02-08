@@ -1,5 +1,0 @@
-jt.codes
-proxy / :8080
-tls {
-    max_certs 10
-}
