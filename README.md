@@ -12,17 +12,17 @@ What The Script Executes
 2. Downloads Caddy tarbal & extracts that tarbal (all inside #1 directory)
 3. Downloads the [caddy.service](./caddy.service) file to $HOME directory
 4. Copies the Caddy binary to the `/usr/local/bin` directory & change ownership/executable rights
-5. Allow Caddy to bind to HTTP/SSL ports
-6. Setup www-data group (standard is 33 on Linux)
-7. Create an `/etc/caddy` directory for Caddy settings & establish ownership/permissions
-8. Create an `/etc/ssl/caddy` directory for your TLS certificates -- make sure to keep this directory safe
-9. Create a `/var/www` directory for your sites static files & establish ownsership/permissions
-10. Copy your Caddyfile (must be in $HOME) to #6
-11. Copy the `caddy.service` file (from #3) to the `/etc/systemd/system` directory & establish ownsership/permissions
-12. Reload `daemon`
-13. Start `caddy.service`
-14. Enable `caddy.service`
-15. Show status of `caddy.service`
+5. Allows Caddy to bind to HTTP/SSL ports
+6. Sets up www-data group (standard is 33 on Linux)
+7. Creates an `/etc/caddy` directory for Caddy settings & establish ownership/permissions
+8. Creates an `/etc/ssl/caddy` directory for your TLS certificates -- make sure to keep this directory safe
+9. Creates a `/var/www` directory for your sites static files & establish ownsership/permissions
+10. Copies your Caddyfile (must be in $HOME) to #6
+11. Copies the `caddy.service` file (from #3) to the `/etc/systemd/system` directory & establish ownsership/permissions
+12. Reloads `daemon`
+13. Starts `caddy.service`
+14. Enables `caddy.service`
+15. Shows status of `caddy.service`
 
 How To Install
 ==============
@@ -33,7 +33,7 @@ wget -O- https://raw.githubusercontent.com/jtaylor32/caddy-starter-kit/master/ce
 
 Misc.
 =====
-You must have a Caddyfile located in the $HOME directory. Also, make sure that Caddyfile is a valid Caddyfile -- you might run into issues when you have the wrong syntax, etc.
+You must have a Caddyfile located in the `$HOME` directory. Also, make sure that Caddyfile is a valid Caddyfile -- you might run into issues when you have the wrong syntax, etc.
 
 If you would like to serve static files with Caddy just drop them into the `/var/www` directory.
 
