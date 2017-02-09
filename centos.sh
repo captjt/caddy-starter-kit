@@ -15,11 +15,11 @@ sudo yum install wget --assumeyes
 mkdir $HOME/caddy_files
 
 # This script will download and install the caddy binary and put it in your PATH
-wget -O $HOME/caddy_files https://github.com/mholt/caddy/releases/download/v0.9.4/caddy_linux_amd64.tar.gz 
+wget -P $HOME/caddy_files https://github.com/mholt/caddy/releases/download/v0.9.4/caddy_linux_amd64.tar.gz 
 tar xf $HOME/caddy_files/caddy_linux_amd64.tar.gz 
 
 # this will download the caddy.service file I am hosting in github and put it in your $HOME dir
-wget -O $HOME https://raw.githubusercontent.com/jtaylor32/caddy-starter-kit/master/caddy.service
+wget -P $HOME https://raw.githubusercontent.com/jtaylor32/caddy-starter-kit/master/caddy.service
 
 etc_caddy_path="/etc/caddy"
 etc_ssl_caddy_path="/etc/ssl/caddy"
