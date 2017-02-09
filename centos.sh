@@ -9,11 +9,17 @@
 #   sudo systemctl status caddy.service
 #   etc.
 
+# install wget for now... will do checks and use curl/wget in the future
+sudo yum install wget --assumeyes
+
+mkdir $HOME/caddy_files
+
 # This script will download and install the caddy binary and put it in your PATH
-wget -qO- https://getcaddy.com | bash
+wget -O $HOME/caddy_files https://github.com/mholt/caddy/releases/download/v0.9.4/caddy_linux_amd64.tar.gz 
+tar xf $HOME/caddy_files/caddy_linux_amd64.tar.gz 
 
 # this will download the caddy.service file I am hosting in github and put it in your $HOME dir
-wget https://raw.githubusercontent.com/jtaylor32/caddy-starter-kit/master/caddy.service
+wget -O $HOME https://raw.githubusercontent.com/jtaylor32/caddy-starter-kit/master/caddy.service
 
 etc_caddy_path="/etc/caddy"
 etc_ssl_caddy_path="/etc/ssl/caddy"
@@ -23,8 +29,13 @@ caddyfile="/Caddyfile"
 caddyfile_path=$HOME$caddyfile
 caddyservice_path=$HOME$caddyservice
 
-# sudo chown root:root /usr/local/bin/caddy
-# sudo chmod 755 /usr/local/bin/caddy
+# copy caddy binary to be in our executable PATH (bin dir)
+sudo cp $HOME/caddy_files/caddy /usr/local/bin/
+sudo chown root:root /usr/local/bin/caddy
+sudo chmod 755 /usr/local/bin/caddy
+
+# setup Caddy to be able to bind to our HTTP and SSL ports without being root
+sudo setcap 'cap_net_bind_service=+ep' /usr/local/bin/caddy
 
 # create a www-data user for caddy to serve static files later on
 sudo groupadd -g 33 www-data
