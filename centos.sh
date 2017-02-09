@@ -22,13 +22,13 @@ centos_kit()
     caddyservice_path=$HOME$caddyservice
 
     # This script will download and install the caddy binary and put it in your PATH
-    wget -O- https://raw.githubusercontent.com/jtaylor32/getcaddy.com/master/getcaddy.sh | bash
+    wget -O- https://getcaddy.com | bash
 
     # this will download the caddy.service file I am hosting in github and put it in your $HOME dir
     wget https://raw.githubusercontent.com/jtaylor32/caddy-starter-kit/master/caddy.service
 
-    sudo chown root:root /usr/local/bin/caddy
-    sudo chmod 755 /usr/local/bin/caddy
+    # sudo chown root:root /usr/local/bin/caddy
+    # sudo chmod 755 /usr/local/bin/caddy
 
     # create a www-data user for caddy to serve static files later on
     sudo groupadd -g 33 www-data
