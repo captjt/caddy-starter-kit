@@ -12,6 +12,12 @@ set -e
 
 centos_kit()
 {
+    # This script will download and install the caddy binary and put it in your PATH
+    wget -O- https://getcaddy.com | bash
+
+    # this will download the caddy.service file I am hosting in github and put it in your $HOME dir
+    wget https://raw.githubusercontent.com/jtaylor32/caddy-starter-kit/master/caddy.service
+
     trap 'echo -e "Aborting, error $? in command:\n $BASH_COMMAND"' EXIT
     etc_caddy_path="/etc/caddy"
     etc_ssl_caddy_path="/etc/ssl/caddy"
@@ -20,12 +26,6 @@ centos_kit()
     caddyfile="/Caddyfile"
     caddyfile_path=$HOME$caddyfile
     caddyservice_path=$HOME$caddyservice
-
-    # This script will download and install the caddy binary and put it in your PATH
-    wget -qO- https://getcaddy.com | bash
-
-    # this will download the caddy.service file I am hosting in github and put it in your $HOME dir
-    wget https://raw.githubusercontent.com/jtaylor32/caddy-starter-kit/master/caddy.service
 
     # sudo chown root:root /usr/local/bin/caddy
     # sudo chmod 755 /usr/local/bin/caddy
