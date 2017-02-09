@@ -73,7 +73,7 @@ if [[ ! -d $caddyfile_path ]]; then
     sudo chmod 444 /etc/caddy/Caddyfile
 else
     echo "make sure you have a Caddyfile saved in the home directory: $HOME"
-    trap EXIT
+    exit 0
 fi
 
 if [[ ! -d $caddyservice_path ]]; then
@@ -83,7 +83,7 @@ if [[ ! -d $caddyservice_path ]]; then
     sudo chmod 744 /etc/systemd/system/caddy.service
 else
     echo "make sure you have a caddy.service saved in the home directory: $HOME"
-    trap EXIT
+    exit 0
 fi
 
 sudo systemctl daemon-reload
@@ -92,4 +92,4 @@ sudo systemctl enable caddy.service
 sudo systemctl status caddy.service
 
 echo "successfully installed and started the caddy server"
-trap EXIT
+exit 0
