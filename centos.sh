@@ -9,18 +9,7 @@
 #   sudo systemctl status caddy.service
 #   etc.
 
-# install wget for now... will do checks and use curl/wget in the future
-sudo yum install wget --assumeyes
-
-mkdir $HOME/caddy_files
-
-# This script will download and install the caddy binary and put it in your PATH
-wget -P $HOME/caddy_files https://github.com/mholt/caddy/releases/download/v0.9.4/caddy_linux_amd64.tar.gz 
-tar xf $HOME/caddy_files/caddy_linux_amd64.tar.gz 
-
-# this will download the caddy.service file I am hosting in github and put it in your $HOME dir
-wget -P $HOME https://raw.githubusercontent.com/jtaylor32/caddy-starter-kit/master/caddy.service
-
+caddy_download="/caddy_download"
 etc_caddy_path="/etc/caddy"
 etc_ssl_caddy_path="/etc/ssl/caddy"
 var_www_path="/var/www"
@@ -28,9 +17,26 @@ caddyservice="/caddy.service"
 caddyfile="/Caddyfile"
 caddyfile_path=$HOME$caddyfile
 caddyservice_path=$HOME$caddyservice
+caddydownload_path=$HOME$caddy_download
+
+# install wget for now... will do checks and use curl/wget in the future
+sudo yum install wget --assumeyes
+
+if [[ ! -d $caddydownload_path ]]; then
+    echo "making /caddy_download directory for tarball"
+    mkdir $HOME/caddy_files
+fi
+
+# This script will download and install the caddy binary and put it in your PATH
+wget -P $HOME/caddy_files https://github.com/mholt/caddy/releases/download/v0.9.4/caddy_linux_amd64.tar.gz 
+tar xf $HOME/caddy_files/caddy_linux_amd64.tar.gz -C $HOME/caddy_files/
+
+# this will download the caddy.service file I am hosting in github and put it in your $HOME dir
+wget -P $HOME https://raw.githubusercontent.com/jtaylor32/caddy-starter-kit/master/caddy.service
+
 
 # copy caddy binary to be in our executable PATH (bin dir)
-sudo cp $HOME/caddy_files/caddy /usr/local/bin/
+sudo cp $HOME/caddy_files/caddy_linux_amd64 /usr/local/bin/caddy
 sudo chown root:root /usr/local/bin/caddy
 sudo chmod 755 /usr/local/bin/caddy
 
