@@ -43,7 +43,7 @@ sudo chmod 755 /usr/local/bin/caddy
 # setup Caddy to be able to bind to our HTTP and SSL ports without being root
 sudo setcap 'cap_net_bind_service=+ep' /usr/local/bin/caddy
 
-# create a www-data user for caddy to serve static files later on
+# grouping configuration for www-data group (standard 33)
 sudo groupadd -g 33 www-data
 sudo useradd \
   -g www-data --no-user-group \
@@ -52,20 +52,20 @@ sudo useradd \
   --system --uid 33 www-data
 
 if [[ ! -d $etc_caddy_path ]]; then
-    echo "making /etc/caddy directory and establishing ownership"
+    echo "making /etc/caddy directory and establishing ownership/permissions"
     sudo mkdir /etc/caddy
     sudo chown -R root:www-data /etc/caddy
 fi
 
 if [[ ! -d $etc_ssl_caddy_path ]]; then
-    echo "making /etc/ssl/caddy directory and establishing ownership"
+    echo "making /etc/ssl/caddy directory and establishing ownership/permissions"
     sudo mkdir /etc/ssl/caddy
     sudo chown -R www-data:root /etc/ssl/caddy
     sudo chmod 0770 /etc/ssl/caddy
 fi
 
 if [[ ! -d $var_www_path ]]; then
-    echo "making /var/www directory and establishing ownership"
+    echo "making /var/www directory and establishing ownership/permissions"
     echo " >>> /var/www is where you will have to put your static files if you want caddy to serve them"
     sudo mkdir /var/www
     sudo chown www-data:www-data /var/www
@@ -73,7 +73,7 @@ if [[ ! -d $var_www_path ]]; then
 fi
 
 if [[ ! -d $caddyfile_path ]]; then
-    echo "moving your Caddyfile settings into place"
+    echo "moving your Caddyfile settings into place & establish ownership/permissions"
     sudo cp $HOME/Caddyfile /etc/caddy/
     sudo chown www-data:www-data /etc/caddy/Caddyfile
     sudo chmod 444 /etc/caddy/Caddyfile
